@@ -1,0 +1,224 @@
+The following is an extensive excerpt from ECMA 46, "Standard ECMA-46
+for Data Interchange on 6,30 mm Magnetic Tape Cartridge (63bpmm, Phase
+Encoded)".  Line breaks and spacing have been preserved exactly as
+written; the original document is typed in a fixed-width font.
+
+I obtained a copy of this standard from:
+<http://www.ecma-international.org/publications/files/ECMA-ST-WITHDRAWN/ECMA-46,%201st%20Edition,%20March%201976.pdf>.
+
+ECMA-46 is substantially similar to, and intended to be compatible
+with:
+
+* 3M DC300: a 300 foot data cartridge from 3M Company, first
+  introduced in 1972.
+
+* ANSI X3.56: "Information Systems - Recorded Magnetic Tape Cartridge
+  for Information Interchange - 4 Track, 0.250 Inch (6.30 mm), 1600
+  bpi (63 bpmm), Phase Encoded"
+
+* ISO 4057: "Information processing -- Data interchange on 6,30 mm
+  (0.25 in) magnetic tape cartridge, 63 bpmm (1 600 bpi)
+  phase-encoded"
+
+The encoding scheme defined herein is also referred to generically as
+"1600 bpi phase encoding", and has been used on other varieties of
+tape, including 9-track tape.
+
+Another description of the encoding, with phase diagrams, can be found
+in the Navy Electrical Engineering Training Series, Module 23
+("Magnetic Recording").  This document is in the public domain, and is
+replicated all over the Web.  One such example is located at
+<http://www.tpub.com/neets/book23/102a.htm>.
+
+
+
+
+6. RECORDING
+
+ 6.1 Method of recording
+
+      The method of recording shall be phase encoding, described as
+      follows:
+
+  6.1.1 The tape before the first block, the interblock gaps and that
+        part of the tape following the last block written, shall be
+        erased with the same polarity.
+
+        This polarity is such that the beginning of the relevant track
+        is a North-seeking pole.
+
+        This process forms part of the recording procedure.
+
+  6.1.2 A ZERO bit is a flux transition to the polarity opposite to that
+        of the interblock gap, when reading in the forward direction.
+
+  6.1.3 A ONE bit is a flux transition to the polarity of the interblock
+        gap, when reading in the forward direction.
+
+  6.1.4 Additional flux transitions shall be written at the nominal mid-
+        points between bit flux transitions as defined in 6.1.2 and 6.1.3,
+        if required, to establish the proper polarity for the succeeding
+        bits. These flux transitions shall be called phase flux transi-
+        tions.
+
+[ ... ]
+
+ 6.3 Density of recording
+
+  6.3.1 The density of recording is 63 bpmm nominal.
+
+  6.3.2 The long term average bit spacing is the spacing between bit
+        flux transitions that have been recorded continuously at a
+        nominal density of 63 ftpmm and must be measured over a length
+        of tape not less than 3,81 m.
+
+        The long term average bit spacing shall be within ± 3 % of the
+        nominal bit spacing of 15,9 um.
+
+  6.3.3 The short term average bit spacing referred to a particular bit
+        spacing is the average of the preceding four bit spacings.
+
+        The short term average bit spacing shall be within the limits
+        of ± 7 % of the long term average bit spacing.
+
+        In addition, the short term average bit spacing shall not change
+        at a rate greater than 2 % per bit.
+
+ 6.4. Flux transition spacing
+
+  6.4.1 The spacing between successive bit flux transitions without an
+        intervening phase flux transition shall be between 88 % and
+        105 % of the short term average bit spacing. The spacing bet-
+        ween successive bit flux transitions with an intervening
+        phase flux transition shall be between 95 % and 112 % of the
+        short term average bit spacing.
+
+[ ... ]
+
+7. FORMAT
+
+[ ... ]
+
+ 7.4 Location of characters on the tracks
+
+     Each character is located in a byte of eight bit-positions along
+     the track numbered from 1 to 8 in order of recording.
+
+ 7.5 Sequence of recording
+
+     The least significant bit is recorded first. The information to
+     be interchanged is recorded serially by bit and by character.
+
+                                             --byte--
+             Bit-positions        :   ...4321876543218765432...
+             Forward tape motion  :         ----->>>
+             Resulting recording
+             direction            :         <<<-----
+
+ 7.6 Code
+
+     The characters shall be represented by means of the ECMA 7-Bit
+     Coded Character Set (Standard ECMA-6) and, where required, of
+     its extensions (Standard ECMA-35).
+
+  7.6.1 Recording of 7-bit Coded Characters
+
+        Each 7-bit coded character shall be recorded in bit-positions
+        1 to 7 of a byte; bit-position 8 is recorded with value ZERO.
+        The relationships shall be as follows :
+
+        Bits of the 7-bit combination :    0 b7 b6 b5 b4 b3 b2 b1
+        Bit-position in the byte :         8 7  6  5  4  3  2  1
+
+  7.6.2 Recording of 8-bit Coded Characters
+
+        Each 8-bit coded character shall be recorded in bit-positions
+        1 to 8 of a byte. The relationship shall be as follows :
+
+        Bits of the 8-bit combination :   b8 b7 b6 b5 b4 b3 b2 b1
+        Bit-position in the byte :        8  7  6  5  4  3  2  1
+
+ 7.7 Sequence of characters
+
+     The sequence of characters from start towards end of a block
+     shall correspond to the normal left to right sequence of a
+     written line.
+
+ 7.8 Data block
+
+     A data block shall consist of a preamble, data, CRC and a
+     postamble. The data part of a data block shall contain a mini-
+     mum of 6 bytes and a maximum of 2048 bytes.
+
+ 7.9 Control block
+
+     A control block (known as tape mark) shall consist of a preamble,
+     two bytes of eight ZERO each, and a postamble.
+
+7.10 Gaps
+ 
+ 7.10.1 Integrity of Gaps
+
+        The gaps shall be DC erased. Immediately before and after
+        each block there shall be a length of at least 2,5 mm in
+        which, exclusive of residual edge signals, there is no flux
+        discontinuity capable of producing a read signal of more than
+        10 % of half the Standard Reference Amplitude.
+
+        In the remaining part of the gap one burst of spurious trans-
+        tions can be tolerated, provided that the total number of
+        spurious transitions is at most 7.
+
+ 7.10.2 Interblock gaps
+
+        The interblock gap, i.e. the distance between two successive
+        data blocks, shall have a minimum length of 30,5 mm and a
+        maximum length of 1220 mm. Any gap in excess of 2000 mm shall
+        be considered end of data on this track.
+
+ 7.10.3 Initial gap
+
+        The gap between the LP marker and the first bit of the first
+        data block shall be at least 152,4 mm.
+
+ 7.10.4 Gap polarity
+
+        The polarity of all gaps shall be in the direction specified
+        in 4.3.4.2.
+
+7.11 Preamble and Postamble
+
+ 7.11.1 Preamble
+
+        Immediately preceding data in each block the preamble con-
+        sisting of 15 ZEROS and 1 ONE shall be written. When reading
+        in the forward direction, the first flux transition shall be a
+        ZERO transition. The preamble may be used to establish a
+        timing sequence so that the data can be read in the forward
+        direction.
+
+ 7.11.2 Postamble
+
+        Immediately following data and the CRC in each block the post-
+        amble consisting of 1 ONE and 15 ZEROS shall be written. When
+        reading in the forward direction, the first flux transition
+        shall be the ONE transition. The postamble may be used to
+        establish a timing sequence so that the data can be read in
+        the reverse direction.
+
+7.12 Cyclic Redundancy Check (CRC)
+
+     The 16-bit CRC shall be written in each data block following the
+     data and immediately preceding the postamble. It is recorded in
+     two bytes with the least significant bit recorded first. The
+     polynomial generating the CRC is :
+
+                       16    15    2
+                      x   + x   + x  + 1
+
+7.13 Useable recording area
+
+     All data to be interchanged shall be written within the useable
+     recording area, which, in forward direction, extends from at
+     least 152,4 mm after the LP marker to at most 915 mm after the
+     EW marker (see Fig. 1).
