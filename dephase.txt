@@ -25,7 +25,7 @@ The encoding scheme defined herein is also referred to generically as
 tape, including 9-track tape.
 
 Another description of the encoding, with phase diagrams, can be found
-in the Navy Electrical Engineering Training Series, Module 23
+in the "Navy Electricity and Electronics Training Series", Module 23
 ("Magnetic Recording").  This document is in the public domain, and is
 replicated all over the Web.  One such example is located at
 <http://www.tpub.com/neets/book23/102a.htm>.

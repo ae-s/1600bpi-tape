@@ -1,0 +1,31 @@
+Duncan Smith
+2011-11-08
+
+This is a utility intended to recover data from a standard four-track
+quarter-inch magnetic tape.  The only modulation scheme supported is
+the 1600 bits per inch phase-encoded format used in tapes in the
+1970s.
+
+In order to create a tape image to run this utility on, you must first
+digitize an existing tape.  It is essential to digitize the tape at a
+sufficiently high sample rate.  I suspect that four to six times the
+Nyquist limit is a reasonable target.
+
+1,600 bpi tape has 3,200 flux transitions per inch; each flux
+transition is a half-cycle.  Therefore, the Nyquist frequency for this
+tape format is 3,200 samples/inch.
+
+I have done this by removing the tape from the cartridge and running
+it through a benchtop tape transport, using a head from a spare tape
+drive.  The playback heads were connected one at a time to a
+high-bandwidth audio recorder, and the tape was moved across the head
+at 15 inches per second.
+
+The nominal speed of this tape is 30 inches per second, and the sample
+rate used is 4*44100 samples/sec, or 176,400 samples/sec.  This gives
+an effective sample rate of 352,800 samples/sec at nominal speed.
+Simple calculations show that this is 23520 samples/inch, or 14.7
+samples per bit of recorded data.  This is equivalent to 7.35 times
+the Nyquist frequency calculated above, and so should be more than
+enough sample bandwidth.  Indeed, inspecting the resulting audio files
+in Audacity shows a good deal of waveform detail.
