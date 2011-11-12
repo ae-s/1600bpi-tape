@@ -8,6 +8,9 @@
  * -v --verbose
  */
 
+#define __USE_GNU
+
+#include <math.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
@@ -107,6 +110,8 @@ int processfile(AFfilehandle input)
 	samples_per_baud = rate / (bpi * speed);
 	c_freq = 1/samples_per_baud;
 
+	printf("frequency = %lf cyc/samp, %lf samp/syc, %lf hz\n", c_freq, samples_per_baud, 44100/samples_per_baud);
+
 	data = malloc(sizeof(float) * size);
 	if ((s2 = afReadFrames(input, AF_DEFAULT_TRACK, data, size)) != size) {
 		free(data);
@@ -147,17 +152,13 @@ int demod(float data[], int data_len)
 
 	float max = 0;
 
-	for (i = 0; i < data_len; i++) {
-		if (fabsf(data[i]) > max) {
-			printf("+ data %f max %f\n", data[i], max);
+	// Find the max value, scale other values to fit
+	for (i = 0; i < data_len; i++)
+		if (fabsf(data[i]) > max)
 			max = fabsf(data[i]);
-		} else {
-			printf("- data %f max %f\n", data[i], max);
-		}
-	}
 
 	for (i = 0; i < data_len; i++) {
-		data[i] *= sin((double) c_freq * i) / max;
+		data[i] *= sin((double) c_freq * i / (2 * M_PI)) / max;
 	}
 
 	printf("Altered %d samples, max = %f\n", i, max);
