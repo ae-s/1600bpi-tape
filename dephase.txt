@@ -111,9 +111,9 @@ replicated all over the Web.  One such example is located at
 
                                              --byte--
              Bit-positions        :   ...4321876543218765432...
-             Forward tape motion  :         ----->>>
+             Forward tape motion  :          ----->>>
              Resulting recording
-             direction            :         <<<-----
+             direction            :          <<<-----
 
  7.6 Code
 
