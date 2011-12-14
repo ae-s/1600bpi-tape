@@ -1,16 +1,6 @@
-update=Tue 13 Dec 2011 10:12:18 PM PST
+update=Wed 14 Dec 2011 01:02:13 AM PST
 version=1
-last_client=kicad
-[cvpcb]
-version=1
-NetITyp=0
-NetIExt=.net
-PkgIExt=.pkg
-NetDir=
-LibDir=
-NetType=0
-[cvpcb/libraries]
-EquName1=devcms
+last_client=cvpcb
 [pcbnew]
 version=1
 PadDrlX=320
@@ -66,7 +56,6 @@ MaxLnkS=3
 ShowRat=0
 ShowMRa=1
 [pcbnew/libraries]
-LibDir=
 LibName1=sockets
 LibName2=connect
 LibName3=discret
@@ -77,6 +66,10 @@ LibName7=display
 LibName8=valves
 LibName9=led
 LibName10=dip_sockets
+LibName11=WE_946C
+LibDir=
+[general]
+version=1
 [eeschema]
 version=1
 LibDir=
@@ -110,6 +103,8 @@ RptLab=1
 SimCmd=
 UseNetN=0
 LabSize=60
+PrintMonochrome=1
+ShowSheetReferenceAndTitleBlock=1
 [eeschema/libraries]
 LibName1=power
 LibName2=device
@@ -141,5 +136,9 @@ LibName27=opto
 LibName28=atmel
 LibName29=contrib
 LibName30=valves
-[general]
+LibName31=we_946c
+[cvpcb]
 version=1
+NetIExt=net
+[cvpcb/libraries]
+EquName1=devcms

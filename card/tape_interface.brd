@@ -1,4 +1,4 @@
-PCBNEW-BOARD Version 1 date Tue 13 Dec 2011 10:20:59 PM PST
+PCBNEW-BOARD Version 1 date Tue 13 Dec 2011 10:48:52 PM PST
 
 # Created by Pcbnew(2010-03-14)-final
 
@@ -55,8 +55,8 @@ TextPcbSize 600 800
 EdgeModWidth 150
 TextModSize 600 600
 TextModWidth 120
-PadSize 2500 2500
-PadDrill 1000
+PadSize 600 160
+PadDrill 0
 Pad2MaskClearance 100
 AuxiliaryAxisOrg 0 0
 $EndSETUP
@@ -709,9 +709,9 @@ Po 2500 29375
 $EndPAD
 $EndMODULE  WE_946C
 $MODULE TQFP44
-Po 45000 33750 0 15 4EE82E1F 4EE82CD0 ~~
+Po 45000 33750 0 15 4EE846C9 4EE84621 ~~
 Li TQFP44
-Sc 4EE82CD0
+Sc 4EE84621
 AR 
 Op 0 0 0
 At SMD 
